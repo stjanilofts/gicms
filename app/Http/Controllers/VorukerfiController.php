@@ -38,6 +38,12 @@ class VorukerfiController extends Controller
             $data['items'] = $cats->merge($prods);
             $data['title'] = $item->title;
 
+            if($cats->isEmpty() && $prods->isEmpty()) {
+                $data['item'] = $item;
+                $data['seo'] = $item;
+                return view('frontend.product')->with($data);
+            }
+
             return view('frontend.products')->with($data);
         }
 
@@ -48,6 +54,7 @@ class VorukerfiController extends Controller
         }
 
         $data['item'] = $item;
+        $data['seo'] = $item;
         $data['siblings'] = $item->getSiblings();
         $data['title'] = isset($item->category->title) ? $item->category->title : 'Vörur';
 

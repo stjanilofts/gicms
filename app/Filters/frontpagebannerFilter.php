@@ -8,8 +8,8 @@ class frontpagebannerFilter implements FilterInterface
     public function applyFilter(Image $image)
     {
    		return $image->fit(1400, 700)
-   		  ->greyscale()
-   		  ->colorize(0, 16, 0)
+   		  //->greyscale()
+   		  //->colorize(0, 16, 0)
    		  ->blur(20)
         //->pixelate(256)
    		  ->contrast(-20)

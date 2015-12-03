@@ -17,6 +17,7 @@ class CreatePagesTable extends Migration
             $table->string('url');
             $table->string('banner');
             $table->string('path');
+            $table->string('blade_view');
             $table->integer('order')->default(0)->unsigned();
             $table->integer('topmenu')->default(1)->unsigned();
             $table->integer('parent_id')->default(0)->unsigned();

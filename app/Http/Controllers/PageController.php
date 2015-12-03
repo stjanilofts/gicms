@@ -50,7 +50,16 @@ class PageController extends ItemableController
 				$page = $_p;
 
 				$data['page'] = $page;
+                $data['seo'] = $page;
+                if($page->hasSubs()) {
+                    $data['subs'] = $page->getSubs();
+                }
+                
                 //$data['crumbs'] = $crumbs;
+
+                if($page->blade_view) {
+                    return view('frontend.'.$page->blade_view)->with($data);
+                }
 
 				return view('frontend.page')->with($data);
 			}

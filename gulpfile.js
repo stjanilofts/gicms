@@ -10,7 +10,7 @@ elixir(function(mix) {
 		
         .styles(
             [
-                //'magnific-popup/magnific-popup.css'
+                'magnific-popup/magnific-popup.css',
                 'slick/slick.css',
                 'slick/slick-theme.css'
             ], // Source files
@@ -23,7 +23,7 @@ elixir(function(mix) {
                 'vue/vue.min.js',
                 'vue-resource/vue-resource.min.js',
                 //'underscore/underscore-min.js',
-                //'magnific-popup/jquery.magnific-popup.min.js'
+                'magnific-popup/jquery.magnific-popup.min.js',
                 'slick/slick.min.js'
             ],
             'public/js/bundle.js' // Destination file

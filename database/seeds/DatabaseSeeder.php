@@ -14,6 +14,13 @@ class DatabaseSeeder extends Seeder
     {
         Model::unguard();
 
+        function get_http_response_code($url) {
+            $headers = get_headers($url);
+            return substr($headers[0], 9, 3);
+        }
+
+        $url = 'http://girding.is';
+
         // Notendur
         \App\User::create([
             'name' => 'Netvistun',
@@ -47,19 +54,47 @@ class DatabaseSeeder extends Seeder
             ]);
 
 
-        factory(\App\Page::class)->create([
+        $unnid = factory(\App\Page::class)->create([
                 'title' => 'Unnin verk',
                 'slug' => 'unnin-verk',
-                'content' => '
-                    myndir hér
-                ',
+                'content' => '',
+                'blade_view' => 'cards',
                 'images' => [],
                 'files' => [],
             ]);
+
+
+        $json = file_get_contents('http://girding.is/_unnid_export/');
+        $subbar = json_decode($json, true);
         
-        factory(\App\Page::class)->create([
+        foreach($subbar as $item) {
+            foreach($item['images'] as $image) {
+                $newPath = public_path().'/uploads/'.$image['name'];
+                $oldPath = $url.'/images/sent/'.$image['name'];
+
+                if(!file_exists($newPath)) {
+                    if(get_http_response_code($oldPath) == "200"){
+                        $img = file_get_contents($url.'/images/sent/'.$image['name']);
+                        file_put_contents(public_path().'/uploads/'.$image['name'], $img);
+                    }
+                }
+            }
+
+            factory(\App\Page::class)->create([
+                'title'         => $item['title'],
+                'slug'          => strtolower(str_slug($item['title'], '-')),
+                'status'        => $item['publish'] ? 1 : 0,
+                'images'        => $item['images'],
+                'parent_id'     => $unnid->id,
+            ]);
+        }
+        $item = false;
+
+        
+        $islensk = factory(\App\Page::class)->create([
                 'title' => 'Íslensk framleiðsla',
                 'slug' => 'islensk-framleidsla',
+                'blade_view' => 'cards',
                 'content' => '
                     efni hér
                 ',
@@ -67,7 +102,40 @@ class DatabaseSeeder extends Seeder
                 'files' => [],
             ]);
 
-        factory(\App\Page::class)->create([
+        $json = file_get_contents('http://girding.is/_islensk_export/');
+        $subbar = json_decode($json, true);
+        
+        foreach($subbar as $item) {
+            foreach($item['images'] as $image) {
+                $newPath = public_path().'/uploads/'.$image['name'];
+                $oldPath = $url.'/images/sent/'.$image['name'];
+
+                if(!file_exists($newPath)) {
+                    if(get_http_response_code($oldPath) == "200"){
+                        $img = file_get_contents($url.'/images/sent/'.$image['name']);
+                        file_put_contents(public_path().'/uploads/'.$image['name'], $img);
+                    }
+                }
+            }
+
+            factory(\App\Page::class)->create([
+                'title'         => $item['title'],
+                'slug'          => strtolower(str_slug($item['title'], '-')),
+                'status'        => $item['publish'] ? 1 : 0,
+                'images'        => $item['images'],
+                'parent_id'     => $islensk->id,
+            ]);
+        }
+        $item = false;
+
+
+
+
+
+
+
+
+        /*factory(\App\Page::class)->create([
                 'title' => 'Fréttir',
                 'slug' => 'frettir',
                 'content' => '
@@ -75,7 +143,7 @@ class DatabaseSeeder extends Seeder
                 ',
                 'images' => [],
                 'files' => [],
-            ]);
+            ]);*/
 
         factory(\App\Page::class)->create([
                 'title' => 'Vörur',
@@ -124,12 +192,7 @@ class DatabaseSeeder extends Seeder
                 'files' => [],
             ]);
 
-        $url = 'http://girding.is';
 
-        function get_http_response_code($url) {
-            $headers = get_headers($url);
-            return substr($headers[0], 9, 3);
-        }
 
         foreach($items as $item) {
             foreach($item['images'] as $image) {

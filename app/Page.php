@@ -18,7 +18,7 @@ class Page extends Formable
 
     protected $table = 'pages';
 
-    protected $fillable = ['banner', 'topmenu', 'accordion', 'path', 'hlutur', 'title', 'subtitle', 'content', 'slug', 'parent_id', 'images', 'translations', 'order', 'status', 'url', 'files'];
+    protected $fillable = ['banner', 'blade_view', 'topmenu', 'accordion', 'path', 'hlutur', 'title', 'subtitle', 'content', 'slug', 'parent_id', 'images', 'translations', 'order', 'status', 'url', 'files'];
 
     public $translatable = [
         'title',
@@ -81,8 +81,6 @@ class Page extends Formable
         return $parent->path;
     }
 
-
-
     public function updatePath() {
         $this->path = $this->parentPath() ? $this->parentPath().'/'.$this->slug : $this->slug;
         $this->save();
@@ -103,6 +101,11 @@ class Page extends Formable
             'title' => 'Linkur',
             'type' => 'text',
             'name' => 'url'
+        ],
+        [
+            'title' => 'Blade view (ef annað en venjulega)',
+            'type' => 'text',
+            'name' => 'blade_view'
         ],
         /*[
             'title' => 'Sýna í topp menu (ef þetta er í rótinni)',

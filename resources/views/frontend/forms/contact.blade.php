@@ -1,83 +1,78 @@
 <div id="contact-form">
-	<form class="uk-form" v-on:submit.prevent="onSubmit" v-if="!isSubmitted">
-		<div class="uk-grid uk-grid-small" data-uk-grid-margin="">
+	<form v-on:submit.prevent="onSubmit" v-if="!isSubmitted">
+		<div class="form-row">
+			<input id="fyrirspurn_nafn"
+				   @focus="clearError"
+				   :class="{'form-error': errors.nafn.length}"
+				   type="text"
+				   class=""
+				   :disabled="isSubmitting"
+				   name="nafn"
+				   v-model="fyrirspurn.nafn"
+			   	   placeholder="Nafn" />
+		</div>
 
-			<div class="uk-form-icon uk-width-small-1-3">
-				<i class="uk-icon-user"></i>
-				<input id="fyrirspurn_nafn"
-					   @focus="clearError"
-					   :class="{'uk-form-danger': errors.nafn.length}"
-					   type="text"
-					   class="uk-form-large uk-width-1-1"
-					   :disabled="isSubmitting"
-					   name="nafn"
-					   v-model="fyrirspurn.nafn"
-				   	   placeholder="Nafn" />
-			</div>
+		<div class="form-row">
+			<input id="fyrirspurn_netfang"
+				   @focus="clearError"
+				   :class="{'form-error': errors.netfang.length}"
+				   type="text"
+				   class=""
+				   :disabled="isSubmitting"
+				   name="netfang"
+				   v-model="fyrirspurn.netfang"
+			   	   placeholder="Netfang" />
+		</div>
 
-			<div class="uk-form-icon uk-width-small-1-3">
-				<i class="uk-icon-envelope"></i>
-				<input id="fyrirspurn_netfang"
-					   @focus="clearError"
-					   :class="{'uk-form-danger': errors.netfang.length}"
-					   type="text"
-					   class="uk-form-large uk-width-1-1"
-					   :disabled="isSubmitting"
-					   name="netfang"
-					   v-model="fyrirspurn.netfang"
-				   	   placeholder="Netfang" />
-			</div>
+		<div class="form-row">
+			<input id="fyrirspurn_simi"
+				   @focus="clearError"
+				   :class="{'form-error': errors.simi.length}"
+				   type="text"
+				   class=""
+				   :disabled="isSubmitting"
+				   name="simi"
+				   v-model="fyrirspurn.simi"
+			   	   placeholder="Sími" />
+		</div>
 
-			<div class="uk-form-icon uk-width-small-1-3">
-				<i class="uk-icon-phone"></i>
-				<input id="fyrirspurn_simi"
-					   @focus="clearError"
-					   :class="{'uk-form-danger': errors.simi.length}"
-					   type="text"
-					   class="uk-form-large uk-width-1-1"
-					   :disabled="isSubmitting"
-					   name="simi"
-					   v-model="fyrirspurn.simi"
-				   	   placeholder="Sími" />
-			</div>
+		<div class="form-row">
+			<input id="fyrirspurn_titill"
+				   @focus="clearError"
+				   :class="{'form-error': errors.titill.length}"
+				   type="text"
+				   class=""
+				   :disabled="isSubmitting"
+				   name="titill"
+				   v-model="fyrirspurn.titill"
+			   	   placeholder="Titill" />
+		</div>
 
-			<div class="uk-form-icon uk-width-small-1-1 uk-grid-margin">
-				<i class="uk-icon-exclamation"></i>
-				<input id="fyrirspurn_titill"
-					   @focus="clearError"
-					   :class="{'uk-form-danger': errors.titill.length}"
-					   type="text"
-					   class="uk-form-large uk-width-1-1"
-					   :disabled="isSubmitting"
-					   name="titill"
-					   v-model="fyrirspurn.titill"
-				   	   placeholder="Titill" />
-			</div>
+		<div class="form-row fullwidth">
+			<textarea id="fyrirspurn_skilabod"
+					  @focus="clearError"
+					  :class="{'form-error': errors.skilabod.length}"
+					  rows="6"
+					  class=""
+					  :disabled="isSubmitting"
+					  name="skilabod"
+				   	  v-model="fyrirspurn.skilabod"
+			   	   	  placeholder="Skilaboðin hér..."></textarea>
+		</div>
 
-			<div class="uk-width-small-1-1 uk-grid-margin">
-				<textarea id="fyrirspurn_skilabod"
-						  @focus="clearError"
-						  :class="{'uk-form-danger': errors.skilabod.length}"
-						  rows="6"
-						  class="uk-form-large uk-width-1-1"
-						  :disabled="isSubmitting"
-						  name="skilabod"
-					   	  v-model="fyrirspurn.skilabod"
-				   	   	  placeholder="Skilaboðin hér..."></textarea>
-			</div>
+		<div class="clearfix"></div>
 
-			<div class="uk-width-small-1-1 uk-grid-margin">
-				<button class="takki"
-						:disabled="isSubmitting || errors.length">
-					<span v-if="isSubmitting">
-						Er að senda<span style="width: 20px; display: inline-block; text-align: left;">@{{ dots }}</span>
-					</span>
+		<div class="form-row fullwidth">
+			<button class="takki larger"
+					:disabled="isSubmitting || errors.length">
+				<span v-if="isSubmitting">
+					Er að senda<span style="width: 20px; display: inline-block; text-align: left;">@{{ dots }}</span>
+				</span>
 
-					<span v-if="!isSubmitting">
-						Senda skilaboð
-					</span>
-				</button>
-			</div>
+				<span v-if="!isSubmitting">
+					Senda skilaboð
+				</span>
+			</button>
 		</div>
 	</form>
 

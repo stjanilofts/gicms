@@ -1,0 +1,21 @@
+form
+	padding-top: gutter
+	padding-bottom gutter
+	width: 100%
+	.form-row
+		lost-column: 1/2 2 gutter
+		&.fullwidth
+			lost-column: 1/1 1 gutter
+		+small()
+			lost-column: 1/1 1 gutter
+		input, textarea
+			font-family: $oswald
+			box-sizing: border-box
+			width: 100%
+			background: #FFF;
+			border: none
+			border-radius: 3px			
+			transition: background 0.3s
+	.form-error
+		background: lighten(red, 30) !important
+		transition: background 0.3s

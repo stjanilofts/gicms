@@ -1,3 +1,90 @@
+$(document).ready(function() {
+    $('.image-popup').magnificPopup({
+        type: 'image',
+        closeOnContentClick: true,
+        mainClass: 'mfp-img-mobile',
+        image: {
+            verticalFit: true
+        }        
+    });
+
+    var offsets = [];
+
+    function setOffsets() {
+        offsets = [];
+        
+        $.each($('[data-sticky]'), function(i, v) {
+            offsets.push($(v).offset().top);
+        });
+    }
+
+    function setStickys() {
+        var $top = $(window).scrollTop();
+
+        $.each($('[data-sticky]'), function(i, v) {
+            if($top >= offsets[i]) {
+                if(! ($('.cloned').length > 0)) {
+                    $(v).clone().removeAttr('data-sticky').addClass('cloned').insertBefore($(v));
+                }
+                
+                $(v).not('.cloned').addClass('sticky');
+            } else {
+                $('.cloned').remove();
+                $(v).removeClass('sticky');
+            }
+        });
+    }
+
+    var positions = [];
+    $.each($('[data-scroller]'), function(i, v) {
+        $(v).click(function(e) {
+            e.preventDefault();
+
+            slug = $(v).attr('data-scroller');
+            offset = $(v).attr('data-scroller-offset')
+                ?  $(v).attr('data-scroller-offset')
+                : 0;
+
+            pos = $('a[name="' + slug + '"]').offset().top;
+
+            $('html, body').stop(true, true).animate({
+                scrollTop: (parseInt(pos) + parseInt(offset))
+            }, 1000);
+        })
+    });
+
+    $(window).on('resize', function() {
+        setOffsets();
+        setStickys();
+    });
+
+    $(window).on('scroll', function() {
+        setStickys();
+    });
+
+    setOffsets();
+    setStickys();
+
+
+
+
+
+
+
+
+
+
+
+    $('nav.main.mobile a').click(function(e) {
+        e.preventDefault();
+        if($('nav.main.slide').is(':visible')) {
+            $('nav.main.slide').slideUp('fast');
+        } else {
+            $('nav.main.slide').slideDown('fast');
+        }
+    });
+});
+
 /*var header = $('header');
 var range = 200;
 
@@ -53,3 +140,5 @@ $(window).resize(function() {
         matchHeights();
     }
 });*/
+
+
