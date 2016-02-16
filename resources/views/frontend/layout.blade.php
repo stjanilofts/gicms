@@ -68,7 +68,7 @@
             <div class="bg-image">
             </div>
 
-            <div class="inner-container">
+            <div class="inner-container"> 
 
                 @if(frontpage())
                     <div class="frontpage-content">
