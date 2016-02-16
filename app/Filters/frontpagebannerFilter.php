@@ -10,10 +10,10 @@ class frontpagebannerFilter implements FilterInterface
    		return $image->fit(1400, 700)
    		  //->greyscale()
    		  //->colorize(0, 16, 0)
-   		  ->blur(20)
+   		  ->blur(10)
         //->pixelate(256)
-   		  ->contrast(-20)
-   		  ->brightness(20)
-   		  ->gamma(2);
+   		  ->contrast(-10)
+   		  ->brightness(1)
+   		  ->gamma(1);
     }
 }

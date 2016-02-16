@@ -1,4 +1,13 @@
 $(document).ready(function() {
+    $('.Head').ready(function() {
+        var img = new Image();
+        img.onload = function() {
+            $('.bg-image').css('background-image', 'url(/imagecache/frontpagebanner/mynd1.jpg)')
+            $('.bg-image').addClass('bg-ready')
+        }
+        img.src = '/imagecache/frontpagebanner/mynd1.jpg';
+    });
+
     $('.image-popup').magnificPopup({
         type: 'image',
         closeOnContentClick: true,

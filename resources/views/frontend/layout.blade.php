@@ -64,26 +64,32 @@
            }(document, 'script', 'facebook-jssdk'));
         </script>
 
-        <div class="Head {{ frontpage() ? 'frontpage' : '' }}"
-             style="background: url('/imagecache/frontpagebanner/mynd1.jpg') center center no-repeat; background-size: cover;">
-            @if(frontpage())
-                <div class="frontpage-content">
-                    <div class="animated slideInDown">
+        <div class="Head {{ frontpage() ? 'frontpage' : '' }}">
+            <div class="bg-image">
+            </div>
+
+            <div class="inner-container">
+
+                @if(frontpage())
+                    <div class="frontpage-content">
+                        <div class="animated slideInDown">
+                            <a href="/" id="logo"><img src="/img/logo-{{ lang() }}.png" /></a>
+                        </div>
+                        <div class="animated slideInUp">
+                            @if(lang()=='is')
+                                <h3>Öryggisgirðingar ehf bjóða heildarlausnir á girðingum, hliðum og aðgangskerfum.</h3>
+                            @else
+                                <h3>Sikkerhetsgjerder AS tilbyr komplette løsninger på gjerder porter, adgangssystemer og avanserte overvåkningsgjerder.</h3>
+                            @endif
+                        </div>
+                    </div>
+                @else
+                    <div class="frontpage-content">
                         <a href="/" id="logo"><img src="/img/logo-{{ lang() }}.png" /></a>
                     </div>
-                    <div class="animated slideInUp">
-                        @if(lang()=='is')
-                            <h3>Öryggisgirðingar ehf bjóða heildarlausnir á girðingum, hliðum og aðgangskerfum.</h3>
-                        @else
-                            <h3>Sikkerhetsgjerder AS tilbyr komplette løsninger på gjerder porter, adgangssystemer og avanserte overvåkningsgjerder.</h3>
-                        @endif
-                    </div>
-                </div>
-            @else
-                <div class="frontpage-content">
-                    <a href="/" id="logo"><img src="/img/logo-{{ lang() }}.png" /></a>
-                </div>
-            @endif
+                @endif
+
+            </div>
         </div>
 
         <div class="Menu" data-sticky>
