@@ -52,7 +52,8 @@ class PageController extends ItemableController
 				$data['page'] = $page;
                 $data['seo'] = $page;
                 if($page->hasSubs()) {
-                    $data['subs'] = $page->getSubs();
+                    $subs = $page->getSubs()->sortBy('order');
+                    $data['subs'] = $subs;
                 }
                 
                 //$data['crumbs'] = $crumbs;

@@ -2,9 +2,9 @@
 
 Route::get('/', function() {
     if(\App::getLocale() == 'no') {
-        $data['categories'] = \App\Category::norsk()->active()->get();
+        $data['categories'] = \App\Category::norsk()->active()->orderBy('order')->get();
     } else {
-        $data['categories'] = \App\Category::icelandic()->active()->get();
+        $data['categories'] = \App\Category::icelandic()->active()->orderBy('order')->get();
     }
 	return view('frontend.layout')->with($data);
 });
@@ -52,11 +52,12 @@ Route::group(['middleware'=>'auth', 'prefix' => 'admin'], function () {
     // Toggle formable status
     Route::post('formable/_toggle', 'FormableController@toggle');
 
-	// Formable stjórnhlutir....
-	foreach(config('formable.hlutir') as $hlutur) {
-		Route::resource(strtolower($hlutur), ucfirst($hlutur).'Controller');
-		Route::get(strtolower($hlutur).'/{id}/{subs}', ucfirst($hlutur).'Controller@subsIndex');
-	}
+    // Formable stjórnhlutir....
+    foreach(config('formable.hlutir') as $hlutur) {
+        Route::resource(strtolower($hlutur), ucfirst($hlutur).'Controller');
+        Route::get(strtolower($hlutur).'/subs/{id}', ucfirst($hlutur).'Controller@subsIndex');
+        Route::get(strtolower($hlutur).'/prods/{id}', ucfirst($hlutur).'Controller@prodsIndex');
+    }
 
     Route::resource('orders', 'OrdersController');
 });

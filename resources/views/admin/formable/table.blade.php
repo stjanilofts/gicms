@@ -47,7 +47,7 @@
 				<tr>
 
 					<th style="width: 10px;"></th>
-					<th style="width: 100px;"></th>
+					<th style="width: 120px;"></th>
 					<th style="width: 20px;"></th>
 
 					@foreach($model->listables() as $k => $listable)
@@ -55,6 +55,10 @@
 						<th><?=$k?></th>
 
 					@endforeach
+
+					@if(isset($model->fillableExtras))
+						<th>Extras</th>
+					@endif
 
 					<th></th>
 
@@ -65,14 +69,20 @@
 					<tr class="sortTr" data-itemId="{{ $item->id }}">
 						<td class="uk-sortable-handle uk-text-left"><i class="uk-icon-sort"></i></td>
 
-						<td style="width: 30px;">
+						<td style="width: 120px !important;">
 							<a title="Breyta" href="/admin/{{ strtolower($item->modelName()) }}/{{ $item->id }}/edit" class="uk-button-link uk-margin-small-right"><i class="uk-icon-edit"></i></a>
 
 							@if(!$item->disable_parent_listing && $item->hasSubs())
-								<a title="Undirhlutir" href="/admin/{{ strtolower($item->modelName()) }}/{{ $item->id }}/subs" class="uk-button uk-button-primary uk-button-mini uk-margin-small-right">
+								<a title="Undirflokkar" href="/admin/{{ strtolower($item->modelName()) }}/subs/{{ $item->id }}" class="uk-button uk-button-primary uk-button-mini uk-margin-small-right">
 									<i class="uk-icon-pagelines"></i> {{ $item->getSubCount() }}
 								</a>
 							@endif
+
+							@if (File::exists('../resources/views/admin/'.strtolower($item->modelName()).'/_actions.blade.php'))
+								@if($item->products->count() > 0)
+			    					@include('admin.'.strtolower($item->modelName()).'._actions', ['item' => $item])
+			    				@endif
+			    			@endif
 						</td>
 
 						<td>
@@ -88,8 +98,18 @@
 
 						@endforeach
 
+						@if(isset($model->fillableExtras))
+							<td>
+								@foreach($model->fillableExtras as $k => $v)
+									@if($item->extras()->get($k))
+										<small>{{ $k }}: {{ $item->extras()->get($k) }}</small> 
+									@endif
+								@endforeach
+							</td>
+						@endif
+
 						<td class="uk-text-right" style="width: 100px;">
-							@if($item->slug[0]!='_')
+							@if(isset($item) && $item->slug != '' && $item->slug[0]!='_')
 								{!! Form::open(['action' => [$item->modelName().'Controller@destroy', $item->id], 'method' => 'delete', 'class'=>'uk-padding-remove uk-margin-remove']) !!}
 									<button class="uk-button-link delete-button uk-float-right uk-margin-left" style="cursor: pointer;"><i class="uk-icon-trash-o uk-text-danger"></i></button>
 								{!! Form::close() !!}
