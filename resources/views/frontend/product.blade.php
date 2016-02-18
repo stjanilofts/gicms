@@ -51,7 +51,7 @@
 	</div>
 
 	@if($item->modelName() != 'Category')
-		@include('frontend._products', ['items'=>$item->getSiblings()->sortBy('order'), 'path_cut'=>$item->slug])
+		@include('frontend._products', ['items'=>$item->getVisibleSiblings()->sortBy('order'), 'path_cut'=>$item->slug])
 	@endif
 
 	<script>

@@ -181,6 +181,14 @@ class Product extends Formable
         return false;
     }
 
+    public function getVisibleSiblings()
+    {
+        if($this->category_id > 0)
+            return \App\Product::where('category_id', $this->category_id)->where('status', 1)->where('id', '!=', $this->id)->get();
+
+        return false;
+    }
+
     public function optionsArray($selected_options)
     {
         $opts = [];
