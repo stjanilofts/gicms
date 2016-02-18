@@ -85,7 +85,8 @@ class Category extends Formable
     ];
 
     protected $listables = [
-        'Titill' => 'title'
+        'Titill' => 'title',
+        'Slug' => 'slug',
     ];
 
 
