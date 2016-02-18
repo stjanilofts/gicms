@@ -24,18 +24,19 @@ class Product extends Formable
 
     public $translatable = [
         'title',
+        'slug',
         'content',
     ];
 
 
-    public $fillableExtras = [
+    /*public $fillableExtras = [
         'protein' => 'Protein',
         'trans_fat' => 'Trans fat',
         'fat' => 'Fita',
         'calories' => 'Calories',
         'serving' => 'Amount per serving',
         'made_fresh_with' => 'Made fresh daily with',
-    ];
+    ];*/
 
     public function getFeatures()
     {
@@ -124,6 +125,11 @@ class Product extends Formable
             'title' => 'Vörunúmer',
             'type' => 'text',
             'name' => 'vnr'
+        ],
+        [
+            'title' => 'Slug',
+            'type' => 'text',
+            'name' => 'slug'
         ],
         [
             'title' => 'Features',

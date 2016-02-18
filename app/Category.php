@@ -34,6 +34,7 @@ class Category extends Formable
 
     public $translatable = [
         'title',
+        'slug',
         'content',
     ];
 
@@ -67,6 +68,11 @@ class Category extends Formable
             'title' => 'Undirtitill',
             'type' => 'text',
             'name' => 'subtitle'
+        ],
+        [
+            'title' => 'Slug',
+            'type' => 'text',
+            'name' => 'slug'
         ],
         [
             'title' => 'Efni',
