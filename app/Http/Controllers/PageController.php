@@ -21,7 +21,7 @@ class PageController extends ItemableController
 		foreach($paths as $k => $slug) {
 			$k++;
 
-            $_p = \App\Page::where('slug', $slug)->first();
+            $_p = \App\Page::where('slug', $slug)->where('status', 1)->first();
 
             if(! $_p) {
                 $pages = \App\Page::all();

@@ -13,8 +13,8 @@ class VorukerfiController extends Controller
     public function index()
     {
         $rootId = lang() == 'is' ? 1 : 2;
-        $cats   = \App\Category::where('parent_id', $rootId)->orderBy('order')->get();
-        $prods  = \App\Product::where('category_id', $rootId)->orderBy('order')->get();
+        $cats   = \App\Category::where('parent_id', $rootId)->orderBy('order')->where('status', 1)->get();
+        $prods  = \App\Product::where('category_id', $rootId)->orderBy('order')->where('status', 1)->get();
 
         $data['items'] = $cats->merge($prods);
         $data['title'] = 'Vörur';
@@ -32,8 +32,8 @@ class VorukerfiController extends Controller
         $item = \App\Category::where('slug', $last)->first();
 
         if($item) {
-            $cats   = \App\Category::where('parent_id', $item->id)->orderBy('order')->get();
-            $prods  = \App\Product::where('category_id', $item->id)->orderBy('order')->get();
+            $cats   = \App\Category::where('parent_id', $item->id)->orderBy('order')->where('status', 1)->get();
+            $prods  = \App\Product::where('category_id', $item->id)->orderBy('order')->where('status', 1)->get();
 
             $data['items'] = $cats->merge($prods);
             $data['title'] = $item->title;

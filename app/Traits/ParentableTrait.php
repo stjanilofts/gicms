@@ -59,7 +59,7 @@ trait ParentableTrait {
     {
         $Model = "\App\\".ucfirst($this->modelName);
         $m = new $Model;
-        return $m->where($this->parent_key, $this->id)->where('status', '>', 0)->get();
+        return $m->where($this->parent_key, $this->id)->where('status', 1)->get();
     }
 
     public function getSubCount()
