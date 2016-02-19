@@ -20,7 +20,7 @@ class Category extends Formable
 
     public $parent_key = 'parent_id';
 
-    protected $fillable = ['id', 'title', 'subtitle', 'content', 'slug', 'hlutur', 'parent_id', 'images', 'translations', 'order', 'status', 'files'];
+    protected $fillable = ['id', 'title', 'subtitle', 'extras', 'content', 'slug', 'hlutur', 'parent_id', 'images', 'translations', 'order', 'status', 'files'];
 
     public function scopeNorsk($query)
     {

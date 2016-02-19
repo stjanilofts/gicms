@@ -24,9 +24,9 @@
 	    <li><a href="?#content">Efni</a></li>
 
 	    @if(isset($item))
-	    	@if(in_array('App\Traits\ProductOptionsTrait', class_uses($item)))
+	    	{{-- @if(in_array('App\Traits\ProductOptionsTrait', class_uses($item)))
 				<li><a href="?#options">Vöruvalmöguleikar</a></li>
-	    	@endif
+	    	@endif --}}
 	    	
 	    	<li><a href="?#images">Myndir</a></li>
 	    	<li><a href="?#files">Skrár</a></li>
@@ -74,11 +74,11 @@
 		</li>
 
 		@if(isset($item))
-	    	@if(in_array('App\Traits\ProductOptionsTrait', class_uses($item)))
+	    	{{-- @if(in_array('App\Traits\ProductOptionsTrait', class_uses($item)))
 				<li>
 					@include('admin.product._options', ['item' => $item])
 				</li>
-	    	@endif
+	    	@endif --}}
 
 			<li>
 

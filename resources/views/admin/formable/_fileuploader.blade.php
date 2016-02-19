@@ -17,6 +17,7 @@
 			<div v-if="file.name">
 				<div>
 					<small>@{{ $index + 1 }}. @{{ file.title }}</small>
+					<a v-on="click: deleteFile($index)"><i class="uk-icon-trash-o"></i></a>
 				</div>
 			</div>
 		</li>
@@ -90,6 +91,24 @@
 		},
 		
 		methods: {
+			deleteFile: function(idx) {
+				var self = this;
+
+				var data = {
+					model: $('input[name=model]').val(),
+					id: $('input[name=id]').val(),
+					idx: idx
+				};
+
+				UIkit.modal.confirm("Ertu viss um að þú viljir eyða?", function() {
+					self.isUploading = true;
+
+		   			self.$http.post('/admin/formable/_deleteFile', data, function (data, status, request) {
+						self.updateFileList();
+					});
+				});
+			},
+
 			reorderFiles: function() {
 				var self = this;				
 

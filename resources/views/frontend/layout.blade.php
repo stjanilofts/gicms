@@ -73,7 +73,7 @@
                 @if(frontpage())
                     <div class="frontpage-content">
                         <div class="animated slideInDown">
-                            <a href="/" id="logo"><img src="/img/logo-{{ lang() }}.png" /></a>
+                            <a href="/" id="logo"><img src="/img/logo-{{ lang() }}.png?v=2" /></a>
                         </div>
                         <div class="animated slideInUp">
                             @if(lang()=='is')

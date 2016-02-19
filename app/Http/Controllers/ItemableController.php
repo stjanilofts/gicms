@@ -113,8 +113,13 @@ class ItemableController extends Controller
         $item->resluggify();
 
         $item->save();
+
+        if(method_exists($item, 'returnAfter')) {
+            return $item->returnAfter();
+        }
         
-        return redirect()->action($item->modelName().'Controller@index');
+        // return redirect()->action($item->modelName().'Controller@index');
+        return redirect()->back();
     }
 
     public function update(Request $request, $id)
@@ -127,7 +132,12 @@ class ItemableController extends Controller
 
         $item->save();
 
-        return redirect()->action($item->modelName().'Controller@index');
+        if(method_exists($item, 'returnAfter')) {
+            return $item->returnAfter();
+        }
+        
+        //return redirect()->action($item->modelName().'Controller@index');
+        return redirect()->back();
     }
 
     public function defaultUpdate(Request $request, $item)

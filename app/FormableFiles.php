@@ -23,6 +23,24 @@ class FormableFiles
         $this->persist();
     }
 
+    public function remove($idx = -1)
+    {
+        $files = [];
+
+        foreach($this->files as $k => $file) {
+            if($k == $idx) {
+                \File::delete(public_path().'/files/'.$file['name']);
+            } else {
+                $files[] = $file;
+            }
+        }
+
+        $this->files = $files;
+
+        $this->persist();
+    }
+
+
     public function first()
     {
         if(is_array($this->files)) {
@@ -35,6 +53,14 @@ class FormableFiles
     public function all()
     {
         return $this->files;
+    }
+
+    public function exists() {
+        if(is_array($this->files)) {
+            return $this->files[0] ? true : false;
+        }
+
+        return false;
     }
 
     public function count()

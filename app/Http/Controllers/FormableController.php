@@ -125,6 +125,14 @@ class FormableController extends Controller
         return response()->json(['success' => true], 200);
     }
 
+    public function deleteFile(Request $request)
+    {
+        $idx = $request->get('idx');
+
+        $this->formable->file()->remove($idx);
+        
+        return response()->json(['success' => true], 200);
+    }
 
     public function uploadFile(Request $request)
     {

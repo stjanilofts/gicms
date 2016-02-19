@@ -543,31 +543,32 @@ body a:hover {
 
 .Head .frontpage-content h3 {
   font-weight: 300;
+  font-size: 2em !important;
   color: #231f20;
   text-align: center;
 }
 
 @media (max-width: 992px) {
   .Head .frontpage-content h3 {
-    font-size: 1.8em;
+    font-size: 1.8em !important;
   }
 }
 
 @media (max-width: 768px) {
   .Head .frontpage-content h3 {
-    font-size: 1.4em;
+    font-size: 1.6em !important;
   }
 }
 
 @media (max-width: 600px) {
   .Head .frontpage-content h3 {
-    font-size: 1.2em;
+    font-size: 1.4em !important;
   }
 }
 
 @media (max-width: 420px) {
   .Head .frontpage-content h3 {
-    font-size: 1em;
+    font-size: 1.2em !important;
   }
 }
 

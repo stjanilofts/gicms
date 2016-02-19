@@ -38,6 +38,15 @@ class Product extends Formable
         'made_fresh_with' => 'Made fresh daily with',
     ];*/
 
+    public function returnAfter()
+    {
+        if($this->category_id > 0) {
+            return redirect()->to('admin/category/prods/' . $this->category_id );
+        } else {
+            return redirect()->to('admin/category');
+        }
+    }
+
     public function getFeatures()
     {
         $ret = [

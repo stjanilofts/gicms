@@ -39,6 +39,9 @@ Route::group(['middleware'=>'auth', 'prefix' => 'admin'], function () {
 
     // Delete image
     Route::post('formable/_deleteImage', 'FormableController@deleteImage');
+
+    // Delete file
+    Route::post('formable/_deleteFile', 'FormableController@deleteFile');
     
     // Get uploaded file
     Route::post('formable/_uploadFile', 'FormableController@uploadFile');
