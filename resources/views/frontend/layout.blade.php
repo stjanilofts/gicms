@@ -30,12 +30,12 @@
         <meta property="og:image:width" content="600"/>
         <meta property="og:image:height" content="315"/>
 
-        <link rel="stylesheet" href="/css/bundle.css?v=4">
-        <link rel="stylesheet" href="/css/app.css?v=4">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css?v=4">
+        <link rel="stylesheet" href="/css/bundle.css?v=5">
+        <link rel="stylesheet" href="/css/app.css?v=5">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css?v=5">
         <link href='https://fonts.googleapis.com/css?family=Oswald:400,700' rel='stylesheet' type='text/css'>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js?v=4"></script>
-        <script src="/js/bundle.js?v=4"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js?v=5"></script>
+        <script src="/js/bundle.js?v=5"></script>
         <script>
         Vue.config.debug = false;
         Vue.http.headers.common['X-CSRF-TOKEN'] = document.querySelector('#token').getAttribute('value');
@@ -141,6 +141,6 @@
             </section>
         </div>
         
-        <script src="/js/scripts.js?v=4"></script>
+        <script src="/js/scripts.js?v=5"></script>
     </body>
 </html>

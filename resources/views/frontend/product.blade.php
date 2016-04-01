@@ -20,11 +20,18 @@
 					@if(count($item->img()->all()) > 1)
 						<div class="Product__extra-images" style="margin-bottom: 0;">
 							@foreach($item->img()->all() as $img)
-								<div class="Product__extra-image">
-									<img data-image="{{ $img['name'] }}" src="/imagecache/medium/{{ $img['name'] }}" />
+								<div class="Product__extra-image" data-image="{{ $img['name'] }}">
+									<a class="image-popup" data-image="{{ $img['name'] }}" class="image-popup" href="/imagecache/original/{{ $img['name'] }}"><img src="/imagecache/medium/{{ $img['name'] }}" /></a>
 								</div>
 							@endforeach
 						</div>
+						<script>
+						/*$(document).ready(function() {
+							$('a.prevent_default').click(function(e) {
+								e.preventDefault();
+							})
+						})*/
+						</script>
 					@endif
 				</div>
 			</div>
@@ -38,7 +45,7 @@
 					@if($item->file()->all())
 						<h3>Nánari upplýsingar</h3>
 						@foreach($item->file()->all() as $file)
-							<a class="takki smaller" href="/files/{{ $file['name'] }}"><i class="fa fa-file-o"></i> {{ $file['title'] ?: $item['title'] }}</a>
+							<a target="_blank" class="takki smaller" href="/files/{{ $file['name'] }}"><i class="fa fa-file-o"></i> {{ $file['title'] ?: $item['title'] }}</a>
 						@endforeach
 					@endif
 
@@ -55,8 +62,8 @@
 	@endif
 
 	<script>
-	$('.Product__extra-image img').click(function() {
-		console.log($(this).attr('data-image'));
+	$('.Product__extra-image').click(function() {
+		//console.log($(this).attr('data-image'));
 		$('.Product__image img').attr('src', '/imagecache/large/' + $(this).attr('data-image'));
 		$('.Product__image a').attr('href', '/imagecache/original/' + $(this).attr('data-image'));
 	});
